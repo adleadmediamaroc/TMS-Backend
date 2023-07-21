@@ -34,6 +34,7 @@ public class RolePermissionController {
         return rolePermissionService.lire();
     }
 
+
     @GetMapping("/afficher/{id}")
     @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('EMPLOYEE')")
     public Rolespermissions afficherById(@PathVariable int id) {
@@ -51,4 +52,5 @@ public class RolePermissionController {
     public void supprimerRolePermission(@PathVariable int id) {
         rolePermissionService.deleteRolespermissions(id);
     }
+
 }

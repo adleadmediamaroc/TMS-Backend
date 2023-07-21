@@ -85,7 +85,9 @@ public class RoleController {
 	    }
 	}
 
-	
+
+
+
 	@GetMapping("/{roleId}")
 	public RoleDTO afficherById(@PathVariable Long roleId) {
 		return roleService.getRoleById(roleId);
