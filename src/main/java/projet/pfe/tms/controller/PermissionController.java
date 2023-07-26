@@ -24,7 +24,7 @@ public class PermissionController {
     private PermissionService permissionService;
 
     @GetMapping("/afficher")
-    @PostAuthorize("hasAuthority('ADMIN') or hasAuthority('EMPLOYEE')")
+    //@PostAuthorize("hasAuthority('ADMIN') or hasAuthority('EMPLOYEE')")
     public List<Permissions> afficherAll() {
         return permissionService.lire();
     }
