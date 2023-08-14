@@ -7,7 +7,9 @@ import projet.pfe.tms.dto.ContactClientDTO;
 import projet.pfe.tms.models.ContactClient;
 import projet.pfe.tms.services.ContactClientService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/contacts-client")
@@ -54,34 +56,52 @@ public class ContactClientController {
     }
 
     @DeleteMapping("/delete-contact/{id}")
-    public ResponseEntity<String> deleteContact(@PathVariable Long id){
+    public ResponseEntity<Map<String, String>> deleteContact(@PathVariable Long id){
         this.contactClientService.deleteClient(id);
-        return ResponseEntity.ok("Le contact a été supprimé avec succès");
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("message", "Le contact a été supprimé avec succès");
+        return ResponseEntity.ok(response);
+        
     }
-
+// add a contact here 
     @PostMapping("/client/{id}/contacts")
-    public ResponseEntity<String> addClientContactByClientId(@PathVariable Long id, @RequestBody ContactClientDTO contactDto) {
+    public ResponseEntity<Map<String, String>> addClientContactByClientId(@PathVariable Long id, @RequestBody ContactClientDTO contactDto) {
         contactDto.setClientId(id);
+        Map<String, String> response = new HashMap<>();
         if (contactClientService.addClientContact(contactDto) != null) {
-            return ResponseEntity.ok("Client contact added successfully");
+            response.put("status", "success");
+            response.put("message", "Le contact de client a été ajouté avec succès");
+        return ResponseEntity.ok(response);
         } else {
-            return ResponseEntity.badRequest().body("Failed to add client contact");
+            response.put("status", "error");
+            response.put("message", "Une erreur s'est produite lors de l'ajout du contact");
+            return ResponseEntity.badRequest().body(response);
         }
     }
-
+// update a contact here 
     @PutMapping("/update-client-contact/{clientId}/{id}")
-    public ResponseEntity<String> updateClientContact(@PathVariable Long clientId, @PathVariable Long id, @RequestBody  ContactClientDTO contactDto) {
+    public ResponseEntity<Map<String, String>> updateClientContact(@PathVariable Long clientId, @PathVariable Long id, @RequestBody  ContactClientDTO contactDto) {
+        Map<String, String> response = new HashMap<>();
         if (contactClientService.updateClientContact(clientId, id, contactDto) != null) {
-            return ResponseEntity.ok("Client contact updated successfully");
+            response.put("status", "success");
+            response.put("message", "Le contact a été modifié avec succès");
+            return ResponseEntity.ok(response);
         } else {
-            return ResponseEntity.badRequest().body("Failed to update client contact");
+            response.put("status", "error");
+            response.put("message", "Une erreur s'est produite lors de la modification du contact");
+            return ResponseEntity.badRequest().body(response);
         }
     }
-
+// delete a contact heere
     @DeleteMapping("/delete-client-contact/{id}")
-    public ResponseEntity<String> deleteClientContact(@PathVariable Long id) {
+    public ResponseEntity<Map<String, String>> deleteClientContact(@PathVariable Long id) {
         contactClientService.deleteClientContact(id);
-        return ResponseEntity.ok("Client contact deleted succesfully");
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("message", "Le contact a été supprimé avec succès");
+        return ResponseEntity.ok(response);
+        //return ResponseEntity.ok("Client contact deleted succesfully");
     }
 
     @GetMapping("/contact-principal-fullname/{id}")
@@ -113,7 +133,7 @@ public class ContactClientController {
             return ResponseEntity.ok(clientContactsList);
         }
     }
-
+//Active/nonactive
     @PutMapping("update-client-contact/{contactId}/active")
     public ResponseEntity<ContactClient> updateContactActiveStatus(@PathVariable Long contactId,@RequestParam boolean active)
     {

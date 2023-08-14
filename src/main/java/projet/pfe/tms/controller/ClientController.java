@@ -7,7 +7,9 @@ import projet.pfe.tms.dto.ClientDTO;
 import projet.pfe.tms.models.Client;
 import projet.pfe.tms.services.ClientService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/clients")
@@ -34,30 +36,54 @@ public class ClientController {
         return this.clientService.loadClientByClientId(id);
     }
 
+   
     @PostMapping("/add-client")
-    public ResponseEntity<String> addNewClient(@RequestBody ClientDTO clientDto){
-        if (this.clientService.loadClientByEmail(clientDto.getEmail()) != null)
-            return ResponseEntity.badRequest().body("Cet email est déjà utilisé");
+    public ResponseEntity<Map<String, String>> addNewClient(@RequestBody ClientDTO clientDto) {
+    Map<String, String> response = new HashMap<>();
 
-        if(this.clientService.addNewClient(clientDto) != null)
-            return ResponseEntity.ok("Le client a été ajouté avec succès");
-
-        return ResponseEntity.badRequest().body("Une erreur s'est produite lors de l'ajout du client");
+    if (this.clientService.loadClientByEmail(clientDto.getEmail()) != null) {
+        response.put("status", "error");
+        response.put("message", "Cet email est déjà utilisé");
+        return ResponseEntity.badRequest().body(response);
     }
 
-    @PutMapping("/update-client/{id}")
-    public ResponseEntity<String> updateClient(@PathVariable Long id, @RequestBody ClientDTO clientDto){
-
-        if(this.clientService.updateClient(id, clientDto) != null )
-            return ResponseEntity.ok("Le client a été modifié avec succès");
-
-        return ResponseEntity.badRequest().body("Une erreur s'est produite lors de la modification du client");
+    if (this.clientService.addNewClient(clientDto) != null) {
+        response.put("status", "success");
+        response.put("message", "Le client a été ajouté avec succès");
+        return ResponseEntity.ok(response);
     }
+
+    response.put("status", "error");
+    response.put("message", "Une erreur s'est produite lors de l'ajout du client");
+    return ResponseEntity.badRequest().body(response);
+}
+
+
+   
+    @PostMapping("/update-client/{id}")
+public ResponseEntity<Map<String, String>> updateClient(@PathVariable Long id, @RequestBody ClientDTO clientDto) {
+    Map<String, String> response = new HashMap<>();
+
+
+    if(this.clientService.updateClient(id, clientDto) != null ) {
+        response.put("status", "success");
+        response.put("message", "Le client a été modifié avec succès");
+        return ResponseEntity.ok(response);
+    }
+
+    response.put("status", "error");
+    response.put("message", "Une erreur s'est produite lors de la modification du client");
+    return ResponseEntity.badRequest().body(response);
+}
 
     @DeleteMapping("/delete-client/{id}")
-    public ResponseEntity<String> deleteClient(@PathVariable Long id){
+    public ResponseEntity<Map<String, String>> deleteClient(@PathVariable Long id){
         this.clientService.deleteClient(id);
-        return ResponseEntity.ok("Le client a été supprimé avec succès");
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("message", "Le client a été supprimé avec succès");
+        return ResponseEntity.ok(response);
+
     }
 
     @PutMapping("/update-client/{id}/affect-commercial/{staffId}")
