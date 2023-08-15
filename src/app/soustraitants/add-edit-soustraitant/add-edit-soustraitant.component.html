@@ -1,0 +1,140 @@
+<p-dialog 
+header="Header" 
+[(visible)]="displayAddModal"
+ [modal]="true" 
+ [style]="{ width: '50vw' }" 
+ [draggable]="false" 
+ [resizable]="false"
+ (onHide)="closeModal()"
+ >
+
+ <form [formGroup]="SoustraitantForm">
+     <div class="field">
+        <label class="block" for="company">Company</label>
+        <input type="text" pInputText id="company" formControlName="company"/>
+
+        <small class="p-error block" 
+        *ngIf="SoustraitantForm.controls['company'].invalid && 
+        SoustraitantForm.controls['company'].dirty ">
+        Field is required
+        </small>
+
+        </div>
+    <div class="field">
+        <label class="block" for="phoneNumber">PhoneNumber</label>
+        <input type="text" pInputText id="phoneNumber" formControlName="phoneNumber"/>
+        <small class="p-error block" 
+        *ngIf="SoustraitantForm.controls['phoneNumber'].invalid && 
+        SoustraitantForm.controls['phoneNumber'].dirty ">
+        Field is required
+        </small>
+        </div>
+
+    <div class="field">
+            <label class="block" for="countryId">CountryId</label>
+            <input type="text" pInputText id="countryId" formControlName="countryId"/>
+            <small class="p-error block" 
+            *ngIf="SoustraitantForm.controls['countryId'].invalid && 
+            SoustraitantForm.controls['countryId'].dirty ">
+            Field is required
+            </small>
+
+    </div>
+    <div class="field">
+        <label class="block" for="number">Number</label>
+        <p-inputNumber id="number" formControlName="number"></p-inputNumber>
+        <small class="p-error block" 
+        *ngIf="SoustraitantForm.controls['number'].invalid && 
+        SoustraitantForm.controls['number'].dirty ">
+        Field is required
+        </small>
+
+        </div>
+    <div class="field">
+            <label class="block" for="city">City</label>
+            <input type="text" pInputText id="city" formControlName="city"/>
+            <small class="p-error block" 
+        *ngIf="SoustraitantForm.controls['city'].invalid && 
+        SoustraitantForm.controls['city'].dirty ">
+        Field is required
+        </small>
+
+        </div>
+    <div class="field">
+            <label class="block" for="zip">Zip</label>
+            <input type="text" pInputText id="zip" formControlName="zip"/>
+            <small class="p-error block" 
+        *ngIf="SoustraitantForm.controls['zip'].invalid && 
+        SoustraitantForm.controls['zip'].dirty ">
+        Field is required
+        </small>
+
+        </div>
+    <div class="field">
+            <label class="block" for="state">State</label>
+            <input type="text" pInputText id="state" formControlName="state"/>
+            <small class="p-error block" 
+        *ngIf="SoustraitantForm.controls['state'].invalid && 
+        SoustraitantForm.controls['state'].dirty ">
+        Field is required
+        </small>
+
+        </div>
+     <div class="field">
+            <label class="block" for="address">Address</label>
+            <input type="text" pInputText id="address" formControlName="address"/>
+            <small class="p-error block" 
+        *ngIf="SoustraitantForm.controls['address'].invalid && 
+        SoustraitantForm.controls['address'].dirty ">
+        Field is required
+        </small>
+
+        </div>
+    <div class="field">
+            <label class="block" for="website">Website</label>
+            <input type="text" pInputText id="website" formControlName="website"/>
+            <small class="p-error block" 
+        *ngIf="SoustraitantForm.controls['website'].invalid && 
+        SoustraitantForm.controls['website'].dirty ">
+        Field is required
+        </small>
+
+        </div>
+    <div class="field">
+            <label class="block" for="defaultCurrencyId">DefaultCurrencyId</label>
+            <p-inputNumber id="defaultCurrencyId" formControlName="defaultCurrencyId"></p-inputNumber>
+            <small class="p-error block" 
+        *ngIf="SoustraitantForm.controls['defaultCurrencyId'].invalid && 
+        SoustraitantForm.controls['defaultCurrencyId'].dirty ">
+        Field is required
+        </small>
+
+    </div>
+    <div class="field">
+        <label class="block" for="codeAuxi">CodeAuxi</label>
+        <input type="text" pInputText id="codeAuxi" formControlName="codeAuxi"/>
+        <small class="p-error block" 
+        *ngIf="SoustraitantForm.controls['codeAuxi'].invalid && 
+        SoustraitantForm.controls['codeAuxi'].dirty ">
+        Field is required
+        </small>
+
+    </div>
+
+ </form>
+
+    <ng-template pTemplate="footer">
+        <p-button 
+        (click)="closeModal()"
+        label="cancel"
+        styleClass="p-button-text">
+    </p-button>
+
+    <p-button  
+    (click)="addSoustraitant()" 
+    label="Add" 
+    [disabled]="SoustraitantForm.invalid"
+    ></p-button>
+
+    </ng-template>
+</p-dialog>
