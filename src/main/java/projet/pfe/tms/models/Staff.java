@@ -127,6 +127,10 @@ public class Staff {
     @JsonIgnore
     private List<Client> clients;
 
+    @OneToMany(mappedBy = "staff")
+    @JsonIgnore
+    private List<Agent> agents;
+
 	public boolean isAllowed() {
 		return !this.isNotStaff;
 	}

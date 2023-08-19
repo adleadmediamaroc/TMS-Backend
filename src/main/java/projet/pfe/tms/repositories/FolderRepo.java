@@ -17,4 +17,5 @@ public interface FolderRepo extends JpaRepository<Folder, Long> {
 
     List<Folder> findFolderByClient(Client client);
 
+    List<Folder> findFolderByAgent(Agent agent);
 }
