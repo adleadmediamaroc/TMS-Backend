@@ -63,7 +63,7 @@ public class Agent {
     @Column(name = "state", length = 100)
     private String state;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mm:ss.sssZ")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     @Column(name = "date_created")
     private LocalDateTime dateCreated = LocalDateTime.now();
 
@@ -107,7 +107,7 @@ public class Agent {
     @Value("${statut:false}")
     private boolean showPrimaryContact;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mm:ss.sssZ")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     @Column(name = "date_affectation_of_commercial")
     private LocalDateTime DateAffectationOfCommercial;
 
