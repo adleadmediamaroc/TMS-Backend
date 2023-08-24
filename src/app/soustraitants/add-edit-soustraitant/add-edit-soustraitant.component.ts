@@ -17,13 +17,13 @@ export class AddEditSoustraitantComponent implements OnInit{
     company: ["",Validators.required],
     phoneNumber: ["",Validators.required],
     number: ["",Validators.required],
-    countryId:[0,Validators.required],
+    countryid:[0,Validators.required],
     city:["",Validators.required],
     zip:["",Validators.required],
     state:["",Validators.required],
     address:["",Validators.required],
     website:["",Validators.required],
-    defaultCurrencyId:[0,Validators.required],
+    default_currency:[0,Validators.required],
     codeAuxi:["",Validators.required]
 
   });

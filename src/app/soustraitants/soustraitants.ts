@@ -1,12 +1,12 @@
 export interface Soustraitants {
     company: string;
     phoneNumber: string;
-    countryId:number;
+    countryid:number;
     city:string;
     zip:string;
     state:string;
     address:string;
     website:string;
-    defaultCurrencyId:number;
+    default_currency:number;
     codeAuxi:string;
 }

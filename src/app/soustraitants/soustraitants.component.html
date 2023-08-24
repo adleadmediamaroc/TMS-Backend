@@ -16,7 +16,7 @@
         <tr>
             <th>Company</th>
             <th>PhoneNumber</th>
-            <th>countryId</th>
+            <th>CountryId</th>
             <th>City</th>
             <th>Zip</th>
             <th>State</th>
@@ -30,13 +30,13 @@
         <tr>
             <td>{{ supplier.company}}</td>
             <td>{{ supplier.phoneNumber }}</td>
-            <td>{{ supplier.countryId }}</td>
+            <td>{{ countryNames[supplier.countryid] || 'USA'}}</td>
             <td>{{ supplier.city }}</td>
             <td>{{ supplier.zip }}</td>
             <td>{{ supplier.state }}</td>
-            <td>{{ supplier.adress }}</td>
+            <td>{{ supplier.address }}</td>
             <td>{{ supplier.website }}</td>
-            <td>{{ supplier.defaultCurrencyId }}</td>
+            <td>{{ currencyNames[supplier.default_currency]}}</td>
             <td>{{ supplier.codeAuxi }}</td>
 
         </tr>

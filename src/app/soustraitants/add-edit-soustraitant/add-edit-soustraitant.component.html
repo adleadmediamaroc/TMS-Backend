@@ -31,11 +31,11 @@ header="Header"
         </div>
 
     <div class="field">
-            <label class="block" for="countryId">CountryId</label>
-            <input type="text" pInputText id="countryId" formControlName="countryId"/>
+            <label class="block" for="countryid">CountryId</label>
+            <input type="text" pInputText id="countryid" formControlName="countryid"/>
             <small class="p-error block" 
-            *ngIf="SoustraitantForm.controls['countryId'].invalid && 
-            SoustraitantForm.controls['countryId'].dirty ">
+            *ngIf="SoustraitantForm.controls['countryid'].invalid && 
+            SoustraitantForm.controls['countryid'].dirty ">
             Field is required
             </small>
 
@@ -101,11 +101,11 @@ header="Header"
 
         </div>
     <div class="field">
-            <label class="block" for="defaultCurrencyId">DefaultCurrencyId</label>
-            <p-inputNumber id="defaultCurrencyId" formControlName="defaultCurrencyId"></p-inputNumber>
+            <label class="block" for="default_currency">DefaultCurrencyId</label>
+            <p-inputNumber id="default_currency" formControlName="default_currency"></p-inputNumber>
             <small class="p-error block" 
-        *ngIf="SoustraitantForm.controls['defaultCurrencyId'].invalid && 
-        SoustraitantForm.controls['defaultCurrencyId'].dirty ">
+        *ngIf="SoustraitantForm.controls['default_currency'].invalid && 
+        SoustraitantForm.controls['default_currency'].dirty ">
         Field is required
         </small>
 

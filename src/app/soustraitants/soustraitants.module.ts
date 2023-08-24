@@ -6,17 +6,6 @@ import { AddEditSoustraitantModule } from './add-edit-soustraitant/add-edit-sous
 import { SoustraitantsComponent } from './soustraitants.component';
 import { ButtonModule } from 'primeng/button';
 
-
-
-
-
-
-
-
-
-
-
-
 @NgModule({
   declarations: [
     SoustraitantsComponent
@@ -26,7 +15,8 @@ import { ButtonModule } from 'primeng/button';
     HttpClientModule,
     TableModule ,
     AddEditSoustraitantModule,
-    ButtonModule
+    ButtonModule,
+    HttpClientModule
   ],
   exports: [
     SoustraitantsComponent
