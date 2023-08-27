@@ -33,6 +33,9 @@ public class Client {
         @Column(name = "userid")
         private Long clientId;
 
+        @Column(name = "name", length = 100)
+        private String name;
+
         @Column(name = "company", length = 100)
         private String company;
 
@@ -162,6 +165,7 @@ public class Client {
         @JoinColumn(name = "staff_id", referencedColumnName = "staffid")
         private Staff staff;
 
+
         @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
         @JsonIgnore
         private List<ContactClient> contacts;
@@ -183,4 +187,7 @@ public class Client {
         @JsonIgnore
         private List<Expense> clientExpenses;
        */
+        @OneToMany(mappedBy = "client")
+        @JsonIgnore
+        private List<Task> tasks;
 }

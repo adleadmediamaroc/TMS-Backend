@@ -63,7 +63,7 @@ public class Agent {
     @Column(name = "state", length = 100)
     private String state;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mm:ss.sssZ")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     @Column(name = "date_created")
     private LocalDateTime dateCreated = LocalDateTime.now();
 
@@ -107,7 +107,7 @@ public class Agent {
     @Value("${statut:false}")
     private boolean showPrimaryContact;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mm:ss.sssZ")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     @Column(name = "date_affectation_of_commercial")
     private LocalDateTime DateAffectationOfCommercial;
 
@@ -146,6 +146,7 @@ public class Agent {
     @JoinColumn(name = "staff_id", referencedColumnName = "staffid")
     private Staff staff;
 
+
     @OneToMany(mappedBy = "agent")
     @JsonIgnore
     private List<Ngp> ngp;
@@ -154,5 +155,9 @@ public class Agent {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JsonIgnore
     private Set<Folder> agentFolders;
+
+    @OneToMany(mappedBy = "agent")
+    @JsonIgnore
+    private List<Task> tasks;
 
 }

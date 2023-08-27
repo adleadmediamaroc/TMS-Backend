@@ -63,18 +63,44 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll().anyRequest().permitAll();
 		}
 
+//	@Bean
+//	CorsConfigurationSource corsConfigurationSource() {
+//		CorsConfiguration configuration = new CorsConfiguration();
+//		configuration
+//				.setAllowedOrigins(Arrays.asList("http://localhost","http://localhost:4200"));
+//		configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Headers", "Access-Control-Allow-Origin",
+//				"Access-Control-Request-Method", "Access-Control-Request-Headers", "Origin", "Cache-Control",
+//				"Content-Type", "Authorization"));
+//		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+//		configuration.setAllowCredentials(true);
+//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//		source.registerCorsConfiguration("/**", configuration);
+//		return source;
+//	}
+
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration
-				.setAllowedOrigins(Arrays.asList("http://localhost","http://localhost:4200"));
-		configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Headers", "Access-Control-Allow-Origin",
-				"Access-Control-Request-Method", "Access-Control-Request-Headers", "Origin", "Cache-Control",
-				"Content-Type", "Authorization"));
+		configuration.setAllowedOriginPatterns(Arrays.asList("*")); // Use allowedOriginPatterns
+		configuration.setAllowedHeaders(Arrays.asList(
+				"Access-Control-Allow-Headers",
+				"Access-Control-Allow-Origin",
+				"Access-Control-Request-Method",
+				"Access-Control-Request-Headers",
+				"Origin",
+				"Cache-Control",
+				"Content-Type",
+				"Authorization"
+		));
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
 		configuration.setAllowCredentials(true);
+
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
+
 		return source;
 	}
+
+
+
 }

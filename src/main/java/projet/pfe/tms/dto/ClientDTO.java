@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ClientDTO {
     private Long clientId;
+    private String name;
     private String company;
     private String iceClient;
     private String phoneNumber;
@@ -25,6 +26,8 @@ public class ClientDTO {
     private String city;
     private String zip;
     private Long countryId;
+    private String countryLongName;
+
 
     private String codeComptable;
     private String codeAuxi;

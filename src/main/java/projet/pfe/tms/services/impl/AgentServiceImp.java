@@ -6,6 +6,7 @@ import projet.pfe.tms.dto.AgentDTO;
 import projet.pfe.tms.models.*;
 import projet.pfe.tms.repositories.AgentRepo;
 import projet.pfe.tms.repositories.FolderRepo;
+import projet.pfe.tms.repositories.TaskRepo;
 import projet.pfe.tms.services.AgentService;
 import projet.pfe.tms.services.CountryService;
 import projet.pfe.tms.services.CurrencyService;
@@ -21,17 +22,19 @@ import java.util.stream.Collectors;
 public class AgentServiceImp implements AgentService {
 
     private final AgentRepo agentRepo;
+    private final TaskRepo taskRepo;
     private final CountryService countryService;
     private final CurrencyService currencyService;
     private final StaffService staffService;
     private final FolderRepo folderRepo;
 
     @Autowired
-    public AgentServiceImp(AgentRepo agentRepo,
+    public AgentServiceImp(AgentRepo agentRepo, TaskRepo taskRepo,
                            CountryService countryService,
                            CurrencyService currencyService,
                            StaffService staffService, FolderRepo folderRepo){
         this.agentRepo = agentRepo;
+        this.taskRepo=taskRepo;
         this.countryService = countryService;
         this.currencyService = currencyService;
         this.staffService = staffService;
@@ -148,13 +151,18 @@ public class AgentServiceImp implements AgentService {
     @Override
     public void deleteAgent(Long id) {
 
-        agentRepo.deleteById(id);
+//        agentRepo.deleteById(id);
         Agent agent = agentRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("recipient not found"));
         List<Folder> folderList = folderRepo.findFolderByAgent(agent);
         for (Folder folder : folderList) {
             folder.setAgent(null);
             folderRepo.save(folder);
+        }
+        List<Task> taskList = agent.getTasks();
+        for (Task task : taskList) {
+            taskRepo.deleteById(task.getTaskId());
+
         }
 
         agentRepo.delete(agent);
@@ -180,6 +188,7 @@ public class AgentServiceImp implements AgentService {
         }
         AgentDTO agentDto = new AgentDTO();
         agentDto.setAgentId(agent.getAgentId());
+        agentDto.setName(agent.getName());
         agentDto.setCompany(agent.getCompany());
         agentDto.setActive(agent.isActive());
         agentDto.setPhoneNumber(agent.getPhoneNumber());
@@ -189,8 +198,10 @@ public class AgentServiceImp implements AgentService {
         agentDto.setAddress(agent.getAddress());
         agentDto.setCity(agent.getCity());
         agentDto.setZip(agent.getZip());
-        if(agent.getCountry() != null)
+        if(agent.getCountry() != null){
             agentDto.setCountryId(agent.getCountry().getCountryId());
+            agentDto.setCountryLongName(agent.getCountry().getLongName());
+        }
         agentDto.setPatente(agent.getPatente());
         if(agent.getCurrency() != null)
             agentDto.setDefaultCurrencyId(agent.getCurrency().getCurrencyId());

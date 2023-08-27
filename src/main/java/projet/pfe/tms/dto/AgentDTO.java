@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class AgentDTO {
 
     private Long agentId;
+    private String name;
     private String company;
     private String phoneNumber;
     private String email;
@@ -25,6 +26,7 @@ public class AgentDTO {
     private String city;
     private String zip;
     private Long countryId;
+    private String countryLongName;
 
 
     private Long defaultCurrencyId;

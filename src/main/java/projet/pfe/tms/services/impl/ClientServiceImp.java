@@ -7,6 +7,7 @@ import projet.pfe.tms.dto.ClientDTO;
 import projet.pfe.tms.models.*;
 import projet.pfe.tms.repositories.ClientRepo;
 import projet.pfe.tms.repositories.FolderRepo;
+import projet.pfe.tms.repositories.TaskRepo;
 import projet.pfe.tms.services.ClientService;
 import projet.pfe.tms.services.CountryService;
 import projet.pfe.tms.services.CurrencyService;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class ClientServiceImp implements ClientService {
 
     private final ClientRepo clientRepo;
+    private final TaskRepo taskRepo;
     private final CountryService countryService;
     private final CurrencyService currencyService;
     private final StaffService staffService;
@@ -29,10 +31,12 @@ public class ClientServiceImp implements ClientService {
 
     @Autowired
     public ClientServiceImp(ClientRepo clientRepo,
+                            TaskRepo taskRepo,
                             CountryService countryService,
                             CurrencyService currencyService,
                             StaffService staffService, FolderRepo folderRepo){
         this.clientRepo = clientRepo;
+        this.taskRepo=taskRepo;
         this.countryService = countryService;
         this.currencyService = currencyService;
         this.staffService = staffService;
@@ -169,7 +173,7 @@ public class ClientServiceImp implements ClientService {
     @Override
     public void deleteClient(Long id) {
 
-        clientRepo.deleteById(id);
+//        clientRepo.deleteById(id);
         Client client = clientRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("recipient not found"));
 
@@ -178,6 +182,11 @@ public class ClientServiceImp implements ClientService {
         for (Folder folder : folderList) {
             folder.setClient(null);
             folderRepo.save(folder);
+        }
+        List<Task> taskList = client.getTasks();
+        for (Task task : taskList) {
+            taskRepo.deleteById(task.getTaskId());
+
         }
 
         clientRepo.delete(client);
@@ -202,6 +211,7 @@ public class ClientServiceImp implements ClientService {
             return null;
         }
         ClientDTO clientDto = new ClientDTO();
+         clientDto.setName(client.getName());
         clientDto.setClientId(client.getClientId());
         clientDto.setCompany(client.getCompany());
         clientDto.setIceClient(client.getIceClient());
@@ -216,8 +226,9 @@ public class ClientServiceImp implements ClientService {
         clientDto.setAddress(client.getAddress());
         clientDto.setCity(client.getCity());
         clientDto.setZip(client.getZip());
-        if(client.getCountry() != null)
+        if(client.getCountry() != null){
             clientDto.setCountryId(client.getCountry().getCountryId());
+            clientDto.setCountryLongName(client.getCountry().getLongName());}
 
         clientDto.setCodeComptable(client.getCodeComptable());
         clientDto.setCodeAuxi(client.getCodeAuxi());
