@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     ButtonModule,
     ReactiveFormsModule,
     InputTextModule,
-    InputNumberModule
+    InputNumberModule,
+    ToastModule
   ],
   exports: [
     AddEditSoustraitantComponent

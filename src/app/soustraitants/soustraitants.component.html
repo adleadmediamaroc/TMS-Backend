@@ -1,29 +1,46 @@
 
 <div class="flex justify-content-between">
-    <h2>Subcontractors</h2>
+    <h2>Sous-traitants</h2>
+    <div class="search-container">
+        <div class="search-icon">
+          <i class="pi pi-search"></i>
+        </div>
+        <input type="text" pInputText [(ngModel)]="searchCompany" (ngModelChange)="searchByCompany()" placeholder="Rechercher par société" />
+      </div>
+      
     <p-button label="Nouveau sous-traitant" (click)="showAddModal()"></p-button>
+    
+      
 
 </div>
 
 <app-add-edit-soustraitant
-    [displayAddModal]="displayAddModal"
-    (clickClose)="hideAddModal($event)">
+    [displayAddEditModal]="displayAddEditModal"
+    [selectedSupplier]="selectedSupplier"
+    (clickClose)="hideAddModal($event)"
+    (clickAddEdit)="saveorUpdateSupplierList($event)"
+    >
+    
 </app-add-edit-soustraitant>
  
 
-<p-table [value]="suppliers" [tableStyle]="{ 'min-width': '50rem' }"  [paginator]="true" [rows]="4">
+<p-table [value]="suppliers" [tableStyle]="{ 'min-width': '50rem' }"  [paginator]="true" [rows]="4"
+currentPageReportTemplate="Affichage de {first} à {last} de {totalRecords} fournisseurs"
+ paginatorPosition="bottom"
+>
     <ng-template pTemplate="header">
         <tr>
-            <th>Company</th>
-            <th>PhoneNumber</th>
-            <th>CountryId</th>
-            <th>City</th>
-            <th>Zip</th>
-            <th>State</th>
-            <th>Address</th>
-            <th>Website</th>
-            <th>DefaultCurrencyId</th>
+            <th>Entreprise</th>
+            <th>Numéro de téléphone</th>
+            <th>Numéro de pays</th>
+            <th>Ville</th>
+            <th>Code postal</th>
+            <th>État</th>
+            <th>Adresse</th>
+            <th>Site web</th>
+            <th>ID de devise par défaut</th>
             <th>CodeAuxi</th>
+            <th>Actions</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-supplier>
@@ -36,9 +53,27 @@
             <td>{{ supplier.state }}</td>
             <td>{{ supplier.address }}</td>
             <td>{{ supplier.website }}</td>
-            <td>{{ currencyNames[supplier.default_currency]}}</td>
+            <td>{{ currencyNames[supplier.default_currency] || 'DOLLAR'}}</td>
             <td>{{ supplier.codeAuxi }}</td>
+            <td>
+                <button
+                pButton
+                icon="pi pi-pencil"
+                class="p-button-rounded p-button-success mr-2"
+                (click)="showEditModal(supplier)"
+                ></button>
+                <button
+                pButton
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-warning sakai-button"
+                (click)="deleteSupplier(supplier)"
+                ></button>
+
+            </td>
 
         </tr>
     </ng-template>
 </p-table>
+
+<p-confirmDialog header="Supprimer"></p-confirmDialog>
+<p-toast position="bottom-right" ></p-toast>

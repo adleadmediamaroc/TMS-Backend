@@ -1,6 +1,6 @@
 <p-dialog 
-header="Header" 
-[(visible)]="displayAddModal"
+header="{{modalType}} sous-traitant" 
+[(visible)]="displayAddEditModal"
  [modal]="true" 
  [style]="{ width: '50vw' }" 
  [draggable]="false" 
@@ -10,7 +10,7 @@ header="Header"
 
  <form [formGroup]="SoustraitantForm">
      <div class="field">
-        <label class="block" for="company">Company</label>
+        <label class="block" for="company">Entreprise</label>
         <input type="text" pInputText id="company" formControlName="company"/>
 
         <small class="p-error block" 
@@ -21,7 +21,7 @@ header="Header"
 
         </div>
     <div class="field">
-        <label class="block" for="phoneNumber">PhoneNumber</label>
+        <label class="block" for="phoneNumber">Numéro de téléphone</label>
         <input type="text" pInputText id="phoneNumber" formControlName="phoneNumber"/>
         <small class="p-error block" 
         *ngIf="SoustraitantForm.controls['phoneNumber'].invalid && 
@@ -31,7 +31,7 @@ header="Header"
         </div>
 
     <div class="field">
-            <label class="block" for="countryid">CountryId</label>
+            <label class="block" for="countryid">ID de pays</label>
             <input type="text" pInputText id="countryid" formControlName="countryid"/>
             <small class="p-error block" 
             *ngIf="SoustraitantForm.controls['countryid'].invalid && 
@@ -41,17 +41,7 @@ header="Header"
 
     </div>
     <div class="field">
-        <label class="block" for="number">Number</label>
-        <p-inputNumber id="number" formControlName="number"></p-inputNumber>
-        <small class="p-error block" 
-        *ngIf="SoustraitantForm.controls['number'].invalid && 
-        SoustraitantForm.controls['number'].dirty ">
-        Field is required
-        </small>
-
-        </div>
-    <div class="field">
-            <label class="block" for="city">City</label>
+            <label class="block" for="city">Ville</label>
             <input type="text" pInputText id="city" formControlName="city"/>
             <small class="p-error block" 
         *ngIf="SoustraitantForm.controls['city'].invalid && 
@@ -61,7 +51,7 @@ header="Header"
 
         </div>
     <div class="field">
-            <label class="block" for="zip">Zip</label>
+            <label class="block" for="zip">Code postal</label>
             <input type="text" pInputText id="zip" formControlName="zip"/>
             <small class="p-error block" 
         *ngIf="SoustraitantForm.controls['zip'].invalid && 
@@ -71,7 +61,7 @@ header="Header"
 
         </div>
     <div class="field">
-            <label class="block" for="state">State</label>
+            <label class="block" for="state">État</label>
             <input type="text" pInputText id="state" formControlName="state"/>
             <small class="p-error block" 
         *ngIf="SoustraitantForm.controls['state'].invalid && 
@@ -81,7 +71,7 @@ header="Header"
 
         </div>
      <div class="field">
-            <label class="block" for="address">Address</label>
+            <label class="block" for="address">Adresse</label>
             <input type="text" pInputText id="address" formControlName="address"/>
             <small class="p-error block" 
         *ngIf="SoustraitantForm.controls['address'].invalid && 
@@ -91,7 +81,7 @@ header="Header"
 
         </div>
     <div class="field">
-            <label class="block" for="website">Website</label>
+            <label class="block" for="website">Site web</label>
             <input type="text" pInputText id="website" formControlName="website"/>
             <small class="p-error block" 
         *ngIf="SoustraitantForm.controls['website'].invalid && 
@@ -101,7 +91,7 @@ header="Header"
 
         </div>
     <div class="field">
-            <label class="block" for="default_currency">DefaultCurrencyId</label>
+            <label class="block" for="default_currency">ID de devise par défaut</label>
             <p-inputNumber id="default_currency" formControlName="default_currency"></p-inputNumber>
             <small class="p-error block" 
         *ngIf="SoustraitantForm.controls['default_currency'].invalid && 
@@ -131,8 +121,8 @@ header="Header"
     </p-button>
 
     <p-button  
-    (click)="addSoustraitant()" 
-    label="Add" 
+    (click)="addEditSupplier()" 
+    label="{{modalType}}" 
     [disabled]="SoustraitantForm.invalid"
     ></p-button>
 

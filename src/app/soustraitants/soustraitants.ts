@@ -1,4 +1,5 @@
 export interface Soustraitants {
+    userid:number;
     company: string;
     phoneNumber: string;
     countryid:number;
