@@ -48,6 +48,10 @@ public class Country {
     @JsonIgnore
     private List<Client> clientsCountries;
 
+    @OneToMany(mappedBy = "country")
+    @JsonIgnore
+    private List<Agent> agentsCountries;
+
     @OneToMany(mappedBy = "billingCountry")
     @JsonIgnore
     private List<Client> billingCountries;

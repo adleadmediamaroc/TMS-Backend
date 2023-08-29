@@ -42,6 +42,12 @@ public class Ngp {
     @JoinColumn(name = "clientid", referencedColumnName = "userid")
     private Client client;
 
+    @ManyToOne
+    @JsonBackReference
+    @JsonIgnore
+    @JoinColumn(name = "agent_id", referencedColumnName = "agent_id")
+    private Agent agent;
+
     @Column(name = "origine ", length = 100)
     private String origine;
 

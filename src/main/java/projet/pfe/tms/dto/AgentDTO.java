@@ -1,5 +1,6 @@
 package projet.pfe.tms.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,17 +10,16 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClientDTO {
-    private Long clientId;
+public class AgentDTO {
+
+    private Long agentId;
     private String name;
     private String company;
-    private String iceClient;
     private String phoneNumber;
     private String email;
-    private double enCours;
-    private int echeance;
+    private boolean active;
     private String website;
-    private String rc;
+
     private String cnss;
 
     private String address;
@@ -29,8 +29,6 @@ public class ClientDTO {
     private String countryLongName;
 
 
-    private String codeComptable;
-    private String codeAuxi;
     private Long defaultCurrencyId;
     private Double patente;
 
@@ -46,7 +44,10 @@ public class ClientDTO {
     private String shippingZip;
     private Long shippingCountryId;
 
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime dateAffectation;
     private String staffFullName;
     private Long staffId;
+
 }
