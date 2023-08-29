@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Data; 
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -165,6 +165,7 @@ public class Client {
         @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
         @JsonIgnore
         private List<ContactClient> contacts;
+        
 
         @OneToMany(mappedBy = "client")
         @JsonIgnore

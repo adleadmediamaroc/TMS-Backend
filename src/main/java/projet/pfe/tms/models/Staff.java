@@ -16,7 +16,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+@Data 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -127,6 +127,10 @@ public class Staff {
     @JsonIgnore
     private List<Client> clients;
 
+    @OneToMany(mappedBy = "staff")
+    @JsonIgnore
+    private List<Opportunity> opportunities;
+ 
 	public boolean isAllowed() {
 		return !this.isNotStaff;
 	}
@@ -135,6 +139,8 @@ public class Staff {
         return this.isActive();
 	}
 	
+   
+
 	@Override
 	public String toString() {
 	    String roleName = role != null ? role.getRoleName() : "N/A";

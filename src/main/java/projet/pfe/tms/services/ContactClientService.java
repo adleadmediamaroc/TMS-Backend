@@ -3,9 +3,9 @@ package projet.pfe.tms.services;
 import projet.pfe.tms.dto.ContactClientDTO;
 import projet.pfe.tms.models.ContactClient;
 
-import java.util.List;
+import java.util.List; 
 
-public interface ContactClientService {
+public interface ContactClientService { 
 
     ContactClient addNewContact(ContactClientDTO contactDto);
     ContactClient updateContact(Long id, ContactClientDTO contactDto);

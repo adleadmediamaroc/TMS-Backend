@@ -58,7 +58,7 @@ public class TmsApplication {
 	      "License of API",
 	      "API license URL",
 	      Collections.emptyList());
-	}
+	} 
 	
 	private ApiKey apiKey() { 
 	    return new ApiKey("JWT", "Authorization", "header"); 

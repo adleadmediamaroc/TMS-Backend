@@ -99,7 +99,7 @@ public class ClientServiceImp implements ClientService {
         return this.clientRepo.save(client);
     }
 
-    @Transactional
+    @Transactional 
     @Override
     public Client updateClient(Long id, ClientDTO clientDto) {
         Client client = this.clientRepo.findById(id).orElse(null);
