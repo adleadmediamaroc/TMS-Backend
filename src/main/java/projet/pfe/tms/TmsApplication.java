@@ -50,29 +50,6 @@ public class TmsApplication implements CommandLineRunner {
 				.paths(PathSelectors.any())
 				.build();
 	}
-<<<<<<< HEAD
-	
-	private ApiInfo apiInfo() {
-	    return new ApiInfo(
-	      "My REST API",
-	      "Some custom description of API.",
-	      "1.0",
-	      "Terms of service",
-	      new Contact("Sallo Szrajbman", "www.baeldung.com", "salloszraj@gmail.com"),
-	      "License of API",
-	      "API license URL",
-	      Collections.emptyList());
-	} 
-	
-	private ApiKey apiKey() { 
-	    return new ApiKey("JWT", "Authorization", "header"); 
-	}
-	
-	private SecurityContext securityContext() { 
-	    return SecurityContext.builder().securityReferences(defaultAuth()).build(); 
-	} 
-=======
->>>>>>> 0821289935b1d7cabb150b05b72f8056f14b71bc
 
 	private ApiInfo apiInfo() {
 		return new ApiInfo(

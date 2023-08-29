@@ -129,13 +129,13 @@ public class Staff {
 
     @OneToMany(mappedBy = "staff")
     @JsonIgnore
-<<<<<<< HEAD
     private List<Opportunity> opportunities;
  
-=======
+    @OneToMany(mappedBy = "staff")
+    @JsonIgnore
     private List<Agent> agents;
 
->>>>>>> 0821289935b1d7cabb150b05b72f8056f14b71bc
+
 	public boolean isAllowed() {
 		return !this.isNotStaff;
 	}
